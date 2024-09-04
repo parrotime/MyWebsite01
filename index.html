@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">
+    <meta name="description" content="个人网站 Web 介绍">
+    <meta name="author" content="Funk P">
+    <link href="bootstrap-5.1.0-dist\bootstrap-5.1.0-dist\css\bootstrap.min.css" rel="stylesheet">
+    <title>Index</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background-color: #d6d6d6;
+      }
+      a:hover{
+        color:rgb(13, 123, 28)
+      }
+      a{
+        text-decoration: none;
+      }
+      /* * {
+        border: 1px solid black;
+      } */
+      .flex {
+        display: flex;
+      }
+      .flex1 {
+        flex: 1;
+      }
+      .column {
+        flex-direction: column;
+      }
+      .mg8 {
+        margin: 8px;
+      }
+      .mgr8 {
+        margin-right: 8px;
+      }
+      .mgl8 {
+        margin-left: 8px;
+      }
+      .mgt8 {
+        margin-top: 8px;
+      }
+      .Navigator{
+        padding: 10px 20px;
+        border-bottom: 1px solid rgb(190, 190, 190);
+        font-size: 14px;
+        color: #666;
+      }
+      .white_background {
+        background-color: white;
+      }
+      .navbar-custom{
+        background-color: #31bb31; /* 荧光绿色 */
+      }
+      .Border-Radius{
+        border-radius: 8px;
+      }
+      .Border_solid_top{
+        border-top: 3px solid #3c9b3c;
+      }
+      .Border_solid_bottom{
+        border-bottom: 3px solid #3c9b3c;
+      }
+      .footer {
+        position: fixed; /* 固定在底部 */
+        bottom: 0; /* 距离底部0，确保它紧贴底部 */
+        width: 100%; /* 宽度为100%，覆盖整个页面宽度 */
+        height: 80px; /* 高度80px */
+        z-index: -1; /* 确保它在其他内容之上 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white; /* 白色背景 */
+        border-top: 3px solid #3c9b3c; /* 顶部边框 */
+      }
+      .footer p {
+        margin: 0; /* 无外边距 */
+        text-align: center; /* 文本居中 */
+        font-size: 14px; /* 字体大小14px */
+      }
+      .footer a {
+        text-decoration: none; /* 无下划线 */
+        color: #007bff; /* 链接颜色 */
+      }
+      /* 屏幕宽度小于600时改变的css */
+      @media(max-width: 1000px){
+        .Sider{
+            display: none;
+        }
+        .Context{
+            flex-direction: column;
+        }
+        .DataPart{
+            flex-direction: column;
+        }
+        .RPart{
+            margin-left: 8px;
+        }
+        .Data{
+            margin: 0 0 8px;
+            flex: auto;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="flex">
+    <!-- 侧边栏 -->
+    <div style="width: 200px; z-index: 2; margin-bottom: 90px;" class="Sider white_background mgr8  ">
+        
+      <!-- 头像栏 -->
+        <div style="padding: 10px; align-items: center; justify-content: center;
+        border-bottom: 2px solid #999;" class="flex">
+            <img 
+                src="images/1.png" 
+                weight="40px"
+                height="40px"
+                style="border-radius: 20%"
+                alt="图片若无法打开则显示这行文字"
+            />
+            <div style="margin-left: 10px;">Administrator</div>
+        </div>
+
+        <!-- 导航栏 -->
+            <div class="list-group" style="margin-top: 0px;">
+                <a href="index.html" class="list-group-item list-group-item-success" style=" font-weight: bold; text-align: center;" aria-current="page" aria-current="true">主页</a>
+                <a href="introduce.html" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-action">网站简介</a>
+                <a href="#" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-action">传送门</a>
+                <a href="music.html" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-action">音乐分享</a>
+                <a href="#" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">正在开发</a>
+            </div>
+    </div>
+
+    <!-- 主区域 -->
+    <div class="flex1 flex column" style="margin-bottom: 90px;">
+
+      <!-- 头部栏 -->
+      <div style="height: 80px; z-index: 1;display: flex; align-items: center; justify-content: center;" class="white_background Border_solid_bottom">
+        <h1 style="text-align: center; vertical-align: middle;">欢迎来到这个网站</h1>
+      </div>
+
+      <!-- 内容区 -->
+      <div style="overflow: auto" class="Context flex1 flex">
+
+        <!-- 左区 -->
+        <div style="flex: 3" class="flex column mgr8 mgt8" >
+
+          <!-- 数据区 -->
+          <div class="flex DataPart">
+            <!-- 数据块3个 alt+shift+下箭头/click 两个奇效 -->
+
+            <div style="width: 200px; height: 100px; display: flex; align-items: center; justify-content: center;"  class="Data flex1 white_background mgr8  Border-Radius">
+              <h3>We1c0m3</h3>
+            </div>
+            <div style="width: 200px; height: 100px; display: flex; align-items: center; justify-content: center;"  class="Data flex1 white_background mgr8  Border-Radius">
+              <h3>To Th15</h3>
+            </div>
+            <div style="width: 200px; height: 100px; display: flex; align-items: center; justify-content: center;"  class="Data flex1 white_background mgr8  Border-Radius">
+              <h3>Web51te</h3>
+            </div>
+          </div>
+          <!-- 列表区 -->
+          <div class="flex column">
+            <div style="height: 250px" class="white_background mgt8  Border-Radius">
+              <a style="display: flex; justify-content: center;margin-top: 30px;" href="https://bilibili.com" target="_blank" rel="noopener noreferrer">这是一个网页链接</a>
+              <br>
+              <a style="display: flex; justify-content: center;" href="audio/LBOYL.mp3" target="_blank" rel="noopener">这是一个音频链接</a>
+              <br>
+              <a style="display: flex; justify-content: center;" href="#" target="_blank" rel="noopener" download>下载文档链接</a>
+              <br>
+              <div style="display: flex; justify-content: center;">
+                <audio controls>
+                  <source src="audio/LBOYL.mp3" type="audio/mpeg">
+                </audio>
+              </div>
+              <br>
+
+            </div>
+
+            <div style="height: 1000px; padding: 10px;" class="white_background mgt8  ">
+
+              <!-- <p>这是一个段落。</p>
+              <hr>
+              <p style="color: rgb(104, 127, 242); margin-left: 20px;">这是一个段落。</p>
+              <hr>
+              <p style="font-family: 'Times New Roman', Times, serif; font-size: 30px; text-align: center;">这是一个段落。</p>
+
+              <h1>这是1号标题</h1>
+              <font size="6">这是6号字体文本</font>
+
+              <h2>这是2号标题</h2>
+              <font size="5">这是5号字体文本</font>
+
+              <h3>这是3号标题</h3>
+              <font size="4">这是4号字体文本</font>
+
+              <h4>这是4号标题</h4>
+              <font size="3">这是3号字体文本</font>
+
+              <h5>这是5号标题</h5>
+              <font size="2">这是2号字体文本</font>
+
+              <h6>这是6号标题</h6>
+              <font size="1">这是1号字体文本</font>
+
+              <p>这个<br>段落<br>演示了分行的效果</p>
+              <i>	定义斜体字</i>
+
+                  <header>
+                      <p>header 标签用于定义文档的页眉（介绍信息）</p>
+                      <h1>一级标题</h1>
+                  </header> -->
+            </div>
+
+            <div style="height: 400px" class="white_background mgt8  ">
+              <p class="h1" style="margin-left: 20px; margin-top: 20px;">恭喜来到网站的尽头</p>
+              <br>
+              <br>
+              <p class="h2" style="margin-left: 20px;">没什么才艺，给大伙看一只葵花鹦鹉吧----> </p>
+              <img 
+                src="images/1.png" 
+                width="200px" 
+                height="200px" 
+                style="float:right; border-radius: 50%; margin-right: 30px;"
+                alt="Cockatoo bird">
+
+              <!-- <canvas id="myCanvas" width="200" height="100"
+              style="border:1px solid #000000;">
+              </canvas>
+              <script>
+              var c=document.getElementById("myCanvas");
+              var ctx=c.getContext("2d");
+              // 创建渐变
+              var grd=ctx.createLinearGradient(0,0,200,0);
+              grd.addColorStop(0,"red");
+              grd.addColorStop(1,"white");
+
+              ctx.fillStyle=grd;
+              ctx.fillRect(0,0,150,75);
+              ctx.moveTo(0,0);
+              ctx.lineTo(200,100);
+              ctx.stroke();
+              </script> -->
+
+              <!-- <canvas id="myCanvas2" width="200" height="100" style="border:1px solid #d3d3d3;">
+              您的浏览器不支持 HTML5 canvas 标签。</canvas>
+              <script>
+              var c=document.getElementById("myCanvas2");
+              var ctx=c.getContext("2d");
+              ctx.beginPath();
+              ctx.arc(95,50,40,0,2*Math.PI);
+              ctx.stroke();
+              </script>  -->
+
+            </div>
+      
+
+            <!-- 列表项 -->
+          </div>
+        </div>
+
+
+        
+        <!-- 右区 -->
+        <div style="flex: 1" class="RPart flex column">
+
+          <!-- 提示区 -->
+          <div style="height: 150px" class="white_background mgr8 mgt8  ">
+
+            <button type="button" class="btn btn-success" disabled style="margin-top: 10px;margin-left: 10px;">提示区</button>
+
+            <div style="display: flex; justify-content: center; margin-top: 20px; font-size: 18px;">
+              <p>虽然我也不知道要提示一些什么</p>
+            </div>            
+
+            <a href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" title="没什么提示，谢谢"
+            style="margin-bottom: 10px; margin-left: 40px;">鼠标移动到我这看看有什么提示呢</a>
+          </div>
+          
+          <!-- 消息区 --> 
+          <div style="height: 150px" class="white_background mgr8 mgt8  ">
+            <button type="button" class="btn btn-success" disabled style="margin-top: 10px;margin-left: 10px;">消息区</button>
+
+            <div style="display: flex; justify-content: center; margin-top: 20px; font-size: 18px;">
+              <p>虽然我也不知道有什么消息</p>
+            </div>            
+
+            <a href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" title="没什么消息，谢谢"
+            style="margin-bottom: 10px; margin-left: 40px;">鼠标移动到我这看看有什么消息呢</a>
+          </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- 底部栏 -->
+    <div  class=" footer" >
+      <p >
+        © 2024 欢迎来到这个网站 | 当前版本1.0.0 | <a href="#" style="text-decoration: none; color: #007bff;">隐私政策</a> | <a href="#" style="text-decoration: none; color: #007bff;">联系我们</a>
+      </p>
+    </div>
+
+    
+    <script src="bootstrap-5.1.0-dist\bootstrap-5.1.0-dist\js\bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">
+    <meta name="description" content="个人网站 Web 介绍">
+    <meta name="author" content="Funk P">
+    <link href="bootstrap-5.1.0-dist\bootstrap-5.1.0-dist\css\bootstrap.min.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet" >
+    <title>Music</title>
+    <style>
+        .music-row {
+            display: flex;  /* 使用 Flexbox 布局 */
+            justify-content: space-evenly; /* 在两卡片之间留出空白空间 */
+            margin-bottom: 20px; /* 行间距 */
+        }
+
+        .music-card {
+            width: 48%; /* 每个卡片的宽度占据父容器的 48%，总和接近 100% */
+            margin: 0; /* 去掉外边距 */
+            border-radius: 10px;
+        }
+
+        .music-card:hover {
+            border-color: darkgreen;
+            color: darkgreen;
+        }
+
+        .music-card img {
+            width: 150px;
+            height: 150px;
+            margin: 10px; /* 在图片右侧留出 20px 的空间 */
+            border-radius: 10px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        #list-example.list-group {
+            position: fixed; /* 固定位置 */
+            top: 250px; /* 从顶部开始 */
+            right: 20px; /* 与右侧边界留出20px的间隙 */
+            width: 200px; /* 设置列表的宽度，根据需要调整 */
+            overflow-y: auto; /* 如果内容超出，启用垂直滚动条 */
+            height: 100vh; /* 设置高度为视口的100% */
+            margin: 0; /* 移除默认外边距 */
+        }
+
+        .section-title {
+            text-align: center; /* 水平居中文本 */
+            position: relative; /* 为伪元素定位 */
+            margin-left: -15px;
+            margin-bottom: 20px; /* 根据需要设置段落下方的间距 */
+        }
+
+        .section-title h4 {
+            margin: 20px 0 0; /* 上方20px空间，下方0，左右不设置外边距 */
+            position: relative; /* 使 z-index 有效 */
+            z-index: 1; /* 确保标题在伪元素上方 */
+        }
+
+        .section-title::after {
+            content: ''; /* 伪元素需要内容才能显示 */
+            position: absolute;
+            bottom: -10px; /* 根据需要调整位置 */
+            left: 50%;
+            transform: translateX(-50%); /* 水平居中线条 */
+            width: 50%; /* 根据需要调整线条宽度 */
+            height: 3px; /* 线条高度 */
+            background-color: black; /* 线条颜色 */
+        }
+
+        .audio-controls {
+        /* display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 10px; */
+          position: fixed; /* 固定在视窗的位置 */
+          bottom: 0; /* 固定在视窗底部 */
+          left: 0; /* 从视窗左侧开始 */
+          right: 0; /* 宽度充满至视窗右侧 */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          margin: 0; /* 移除原有的外边距 */
+          width: 100%; /* 宽度设为100%，占满整个视窗宽度 */
+          background-color: rgba(0, 0, 0, 0.5); /* 半透明背景，根据需要调整 */
+          z-index: 1000; /* 确保控件在页面最上层 */
+          padding: 10px; /* 内边距，根据需要调整 */
+          box-sizing: border-box; /* 边框计算在宽度内 */
+        }
+
+        .audio-controls button {
+        padding: 5px 10px;
+        font-size: 16px;
+        cursor: pointer;
+        }
+
+        .notice {
+        background-color: white; /* 设置背景颜色 */
+        border-radius: 10px;
+        margin-top: 10px;
+        height: auto; /* 根据内容自动调整高度 */
+        z-index: 1;
+        display: flex;
+        flex-direction: column; /* 子元素垂直排列 */
+        align-items: flex-start; /* 子元素在容器内左对齐 */
+        padding: 15px; /* 与左边的距离 */
+        }
+
+        .notice p {
+        margin: 3px 0; /* 设置段落之间的间距，移除多余的外边距 */
+        text-align: left; /* 文本左对齐 */
+        font-size: 14px; /* 根据需要调整字体大小 */
+        color: #333; /* 文本颜色，可根据需要调整 */
+        }
+        .notice h6 {
+        margin: 0 0 3px 0; /* 移除上外边距，设置下外边距 */
+        padding: 0; /* 移除内边距，如果需要可以重新设置 */
+        text-align: left;
+        font-size: 15px;
+        color: #333;
+        font: bolder;
+        border-bottom: 1px solid #ccc; /* 段落底部边框模拟行间距 */
+        }
+
+    </style>
+  </head>
+
+
+    <body class="flex">
+        <!-- 侧边栏 -->
+        <div style="width: 200px; z-index: 2;" class="Sider white_background mgr8">
+        
+            <!-- 头像栏 -->
+            <div style="padding: 10px; align-items: center; justify-content: center;
+            border-bottom: 1px solid #999;" class="flex">
+                <img 
+                    src="images/1.png" 
+                    weight="40px"
+                    height="40px"
+                    style="border-radius: 20%"
+                    alt="图片若无法打开则显示这行文字"
+                />
+                <div style="margin-left: 10px;">Administrator</div>
+            </div>
+
+            <!-- 导航栏 -->
+            <div class="list-group" style="margin-top: 0px;">
+                <a href="index.html" class="list-group-item list-group-item-action" style=" font-weight: bold; text-align: center;" aria-current="page" aria-current="true">主页</a>
+                <a href="introduce.html" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-action">网站简介</a>
+                <a href="#" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-action">传送门</a>
+                <a href="music.html" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-success">音乐分享</a>
+                <a href="#" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">正在开发</a>
+            </div>
+        </div>
+
+        <!-- 中间的主要内容 -->
+        <div class="flex1 flex column">
+
+            <!-- 头部栏 -->
+            <div style="border-radius: 10px; height: 80px; z-index: 1; display: flex; justify-content: center; align-items: center;" class="white_background ">
+                <h1 style="margin-left: -220px; text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Top 10 Music of Years</h1>
+            </div>
+
+            <!-- 注意事项 -->
+            <div style="border-radius: 10px; margin-top: 10px; height: auto; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; padding-left: 20px;"  class="notice">
+                <h6 style="text-align: left;">网站仍处于开发中, 版本 v1.0.0</h6>
+                <p style="text-align: left;">点击专辑封面图片可以播放/暂停</p>
+                <p style="text-align: left;">音乐播放外链URL来自于某易云音乐,点击图片若无法播放,可能是因为该音乐在平台上是vip音乐</p>
+            </div>
+
+            <!-- 内容区 -->
+            <div style="overflow: auto; margin-left: 50px;" class="Context flex1 flex">
+                
+                <!-- 中间主体区域 -->
+                <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+
+<!-- ====================================================================================================================== -->
+                    <div id="list-item-1" class="section-title">
+                        <h4>2023</h4>
+                    </div>
+
+                    <!-- 中间卡片区域 -->
+                    <div style="flex: 3" class="flex column mgr8 mgt8">
+                        <!-- 第一排卡片 -->
+                        <div class="music-row">
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=2017364856.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p2.music.126.net/YdAVPDbr4pT6cU3F1GDluw==/109951168261357379.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Unity</h5>
+                                            <p class="card-text">Marshmello</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=1439814454.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="	https://p1.music.126.net/JyF6_2QvPlLSuXSgYDwi0Q==/109951164896130416.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">我的悲伤是水做的</h5>
+                                            <p class="card-text">ChiliChill / 洛天依Official</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 第二排卡片 -->
+                        <div class="music-row">
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=36102468.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p2.music.126.net/WwfPiiG7dayb2AqKbr-DKg==/109951164852920013.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Let the Games Begin </h5>
+                                            <p class="card-text">AJR</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=2042254342.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p1.music.126.net/-tQ0QZMWNgloCdkyhwhRSA==/109951168569151601.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">All That Really Matters</h5>
+                                            <p class="card-text">ILLENIUM / Teddy Swims</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 第三排卡片 -->
+                        <div class="music-row">
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=864647320.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="	https://p1.music.126.net/o8sUSgVRBQrMpIpcgD4YlQ==/109951163400100011.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Young Dumb & Broke (Young Bombs Remix)</h5>
+                                            <p class="card-text">YOUNG BOMBS / Khalid</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=2046581934.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="	https://p2.music.126.net/UbVH1s9sPV0BWpn3GnCS2w==/109951168605439586.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">The World Has A Heartbeat</h5>
+                                            <p class="card-text">Vicetone</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 第四排卡片 -->
+                        <div class="music-row">
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=1482614803.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p2.music.126.net/pIXlzFCzIPMG0RcnXJ9GXw==/109951165347506779.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">不再 (feat. 陈宥如)</h5>
+                                            <p class="card-text">IZZI一几 / MiraclE / 陈宥如</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=2081289684.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p1.music.126.net/DHRtiZNb4LiONB9Tf5erKg==/109951168908578897.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Morning Glory</h5>
+                                            <p class="card-text">King Major</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 第五排卡片 -->
+                        <div class="music-row">
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=2107800148.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p2.music.126.net/LZyogzT6iDXz6c79FN_hPw==/109951169156201540.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Think Of Us (Winter Version)</h5>
+                                            <p class="card-text">The Chainsmokers / GRACEY</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=1997009943.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="	https://p2.music.126.net/hCgRzec6tc_BL71rCTdQIQ==/109951168045899786.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">BE ME</h5>
+                                            <p class="card-text">Doul</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+<!-- ====================================================================================================================== -->
+
+                    <div id="list-item-2" class="section-title">
+                        <h4>2022</h4>
+                    </div>
+
+                    <!-- 中间卡片区域 -->
+                    <div style="flex: 3" class="flex column mgr8 mgt8">
+                        <!-- 第一排卡片 -->
+                        <div class="music-row">
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=1914865798.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p1.music.126.net/M0waqiNclH3zr7siGsQRGg==/109951166977128305.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">High</h5>
+                                            <p class="card-text">The Chainsmokers</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=1919737699.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p1.music.126.net/-OSyiGoetISKHMTdMQrYsQ==/109951167042181717.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Before U</h5>
+                                            <p class="card-text">Marshmello</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 第二排卡片 -->
+                        <div class="music-row">
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=1815533595.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="	https://p2.music.126.net/_0UHFbTRlfJiLh_t2A_g-g==/109951165670781549.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Look at the Sky</h5>
+                                            <p class="card-text">Porter Robinson</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=1921187884.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p1.music.126.net/N1sxwmoUJ7CG9JiG3i74rw==/109951168523112550.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">We Know Who We Are</h5>
+                                            <p class="card-text">Said The Sky / Olivver the Kid</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 第三排卡片 -->
+                        <div class="music-row">
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=470547651.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p1.music.126.net/SuCNw1Twu5gs_UT66_eQdA==/109951165981300158.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Don't Say</h5>
+                                            <p class="card-text">The Chainsmokers / Emily Warren</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=1397191263.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p2.music.126.net/CtXMhM4iK6FB7WjmF3skBQ==/109951169702505177.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Waiting On You</h5>
+                                            <p class="card-text">ThimLife / SOPHIA</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 第四排卡片 -->
+                        <div class="music-row">
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=1860988924.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p1.music.126.net/JrrNmSbKz_PsYophBgkMfg==/109951166176018500.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">First Time</h5>
+                                            <p class="card-text">ILLENIUM / iann dior</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=507585226.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p1.music.126.net/_khDFSlIIC2AiAq-jIrG4Q==/109951168786031313.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Crawl Outta Love</h5>
+                                            <p class="card-text">ILLENIUM / Annika Wells</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 第五排卡片 -->
+                        <div class="music-row">
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=1446156978.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p1.music.126.net/Q_B1KOD_hSb0-ixv8XH-Ig==/109951164986601106.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lose Somebody</h5>
+                                            <p class="card-text">Kygo / OneRepublic</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3 music-card" style="max-width: 540px;" data-audio="http://music.163.com/song/media/outer/url?id=1459162253.mp3">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="https://p2.music.126.net/q-_fBI5yxo300AIkWy2AsQ==/109951165099800601.jpg?param=130y130" alt="Album Cover">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Only Now (feat. Tyler Graves) (MitiS Remix)</h5>
+                                            <p class="card-text">Seven Lions / Tyler Graves / MitiS</p>
+                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+<!-- ====================================================================================================================== -->
+
+                    <div id="list-item-3" class="section-title">
+                        <h4>2021</h4>
+                    </div>
+                    <!-- <h4 id="list-item-3">2021</h4>
+                    <p>...</p> -->
+
+
+<!-- ====================================================================================================================== -->
+
+                    <div id="list-item-4" class="section-title">
+                        <h4>2020</h4>
+                    </div>
+                    <!-- <h4 id="list-item-4">2020</h4>
+                    <p>...</p> -->
+                </div>
+  
+                <div id="list-example" class="list-group">
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">2023</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">2022</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-3">2021</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-4">2020</a>
+                </div>
+
+
+
+
+
+
+
+
+
+                <!-- 右侧导航区域
+                <div style="flex: 1" class="RPart flex column">
+
+                </div> -->
+
+                <!-- 音乐播放栏 -->
+                <div class="audio-controls">
+                    <audio id="audio-player" controls style="width: 80%;">
+                        <source src="" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+
+            </div>
+            
+        </div>
+
+        <!-- 播放音频的脚本 -->
+        <script>
+        const audioPlayer = document.getElementById('audio-player');
+        let currentAudioSrc = '';
+
+        function playAudio(src) {
+            if (currentAudioSrc === src) {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+            } else {
+                audioPlayer.pause();
+            }
+            } else {
+            currentAudioSrc = src;
+            audioPlayer.src = src;
+            audioPlayer.play();
+            }
+        }
+
+        document.querySelectorAll('.music-card').forEach(card => {
+            card.addEventListener('click', () => {
+            const audioSrc = card.getAttribute('data-audio');
+            playAudio(audioSrc);
+            });
+        });
+        </script>
+
+        <script src="bootstrap-5.1.0-dist\bootstrap-5.1.0-dist\js\bootstrap.bundle.min.js"></script>        
+    </body>
+</html>
+
+

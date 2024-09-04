@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">
+    <meta name="description" content="个人网站 Web 介绍">
+    <meta name="author" content="Funk P">
+    <link href="bootstrap-5.1.0-dist\bootstrap-5.1.0-dist\css\bootstrap.min.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet" >
+    <title>Music</title>
+    <style>
+      .music-card {
+        width: 30%;
+        border: 2px solid black;
+        border-radius: 15px;
+        background-color: white;
+        transition: all 0.3s ease;
+        margin: 10px;
+        cursor: pointer;
+        overflow: hidden;
+      }
+
+      .music-card:hover {
+        border-color: darkgreen;
+        color: darkgreen;
+      }
+
+      .music-card:hover .music-card-title,
+      .music-card:hover .music-card-artist,
+      .music-card:hover .music-card-description {
+        color: darkgreen;
+      }
+
+      .music-card img {
+        width: 100px;
+        height: 100px;
+        margin-right: 20px; /* 在图片右侧留出 20px 的空间 */
+        margin-top: 10px; /* 图片上方留出 10px 的空间 */
+        margin-bottom: 10px; /* 图片下方留出 10px 的空间 */
+        object-fit: cover;
+        cursor: pointer;
+      }
+
+      .music-card-title {
+        font-weight: bold;
+        font-size: 1.5em;
+        color: black;
+        margin: 0px 0 5px;
+      }
+
+      .music-card-artist {
+        font-weight: bold;
+        font-size: 1em;
+        color: gray;
+        margin-bottom: 5px;
+      }
+
+      .music-card-description {
+        font-size: 0.9em;
+        color: black;
+      }
+
+      .music-card-content {
+        padding: 15px;
+        text-align: center;
+      }
+
+      .music-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-around;
+      }
+
+      .audio-controls {
+        /* display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 10px; */
+          position: fixed; /* 固定在视窗的位置 */
+          bottom: 0; /* 固定在视窗底部 */
+          left: 0; /* 从视窗左侧开始 */
+          right: 0; /* 宽度充满至视窗右侧 */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          margin: 0; /* 移除原有的外边距 */
+          width: 100%; /* 宽度设为100%，占满整个视窗宽度 */
+          background-color: rgba(0, 0, 0, 0.5); /* 半透明背景，根据需要调整 */
+          z-index: 1000; /* 确保控件在页面最上层 */
+          padding: 10px; /* 内边距，根据需要调整 */
+          box-sizing: border-box; /* 边框计算在宽度内 */
+      }
+
+      .audio-controls button {
+        padding: 5px 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+    /* 头部样式 */
+      .header {
+        height: 100px; /* 调整头部的高度 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        color: #333;
+        font-size: 2em; /* 字体大小相对于头部宽度 */
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+        box-sizing: border-box; /* 确保内外边距计算在内 */
+      }
+
+        /* 侧边栏样式 */
+        .Sider {
+            width: 200px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            background-color: white;
+            z-index: 2;
+            overflow-y: auto;
+        }
+
+        /* 头像栏样式 */
+        .avatar-section {
+            padding: 10px;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #999;
+            display: flex;
+        }
+
+    </style>
+  </head>
+
+  <body class="flex">
+
+    <!-- 侧边栏 -->
+    <div class="Sider white_background mgr8">
+        
+      <!-- 头像栏 -->
+        <div class="avatar-section">
+            <img 
+                src="images/1.png" 
+                width="40px"
+                height="40px"
+                style="border-radius: 20%"
+                alt="图片若无法打开则显示这行文字"
+            />
+            <div style="margin-left: 10px;">Administrator</div>
+        </div>
+
+        <!-- <div style="margin-top: 60px;"></div> -->
+        <!-- 导航栏 -->
+        <div class="list-group" style="margin-top: 60px;">
+            <a href="index.html" class="list-group-item list-group-item-action" style=" font-weight: bold; text-align: center;" aria-current="page" aria-current="true">主页</a>
+            <a href="#" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-action">网站简介</a>
+            <a href="#" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-action">传送门</a>
+            <a href="music.html" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-action active">音乐分享</a>
+            <a href="#" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">正在开发</a>
+        </div>
+
+         <!-- <div class="flex1" style="align-items: stretch;position: fixed;padding: 30px;">
+            <li class="Navigator">
+                <a class="Navigator" style="font-weight: bold" aria-current="page" href="index.html">主页</a>
+            </li>
+            <li class="Navigator">
+                <a class="Navigator" style="font-weight: bold" aria-current="page" href="music.html">分类</a>
+            </li>
+            <li class="Navigator">
+                <a class="Navigator" style="font-weight: bold" aria-current="page" href="music.html">网站简介</a>
+            </li>
+            <li class="Navigator">
+                <a class="Navigator" style="font-weight: bold" aria-current="page" href="music.html">传送门</a>
+            </li>
+            <li class="Navigator">
+                <a class="Navigator" style="font-weight: bold" aria-current="page" href="music.html">来点音乐</a>
+            </li>          
+
+         </div> -->
+    </div>
+
+
+    <div class="flex1 flex column">
+    <!-- 头部 --> 
+        <div class="header">
+            <h2>音乐播放页</h2>
+        </div>     
+
+        <div style="margin-top: 20px;"></div>
+
+        <!-- 主体部分 -->
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Accordion Item #1
+                </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                    <strong>This is the first item's accordion body.</strong> 
+                    It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. 
+                    These classes control the overall appearance, as well as the showing and hiding via CSS transitions. 
+                    You can modify any of this with custom CSS or overriding our default variables. 
+                    It's also worth noting that just about any HTML can go within the 
+                    <code>.accordion-body</code>
+                    , though the transition does limit overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Accordion Item #2
+                </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                    <strong>This is the second item's accordion body.</strong> 
+                    It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. 
+                    These classes control the overall appearance, as well as the showing and hiding via CSS transitions. 
+                    You can modify any of this with custom CSS or overriding our default variables. 
+                    It's also worth noting that just about any HTML can go within the 
+                    <code>.accordion-body</code>
+                    , though the transition does limit overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Accordion Item #3
+                </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                    <strong>This is the third item's accordion body.</strong> 
+                    It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. 
+                    These classes control the overall appearance, as well as the showing and hiding via CSS transitions. 
+                    You can modify any of this with custom CSS or overriding our default variables. 
+                    It's also worth noting that just about any HTML can go within the 
+                    <code>.accordion-body</code>
+                    , though the transition does limit overflow.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="flex column mgr8 mgt8">
+            <!-- <div class="flex DataPart"> -->
+                <div class="music-container">
+                    <!-- 第一行 -->
+                    <div class="music-card" data-audio="audio/LBOYL.mp3">
+                        <img src="images/LBOYL.jpg" alt="音乐封面1">
+                        <div class="music-card-content">
+                        <div class="music-card-title">歌曲名1</div>
+                        <div class="music-card-artist">歌手名1</div>
+                        <div class="music-card-description">这是一首好听的歌曲，值得一听。</div>
+                        </div>
+                    </div>
+
+                    <div class="music-card" data-audio="audio/LBOYL.mp3">
+                        <img src="images/music2.jpg" alt="音乐封面2">
+                        <div class="music-card-content">
+                        <div class="music-card-title">歌曲名2</div>
+                        <div class="music-card-artist">歌手名2</div>
+                        <div class="music-card-description">这是一首好听的歌曲，值得一听。</div>
+                        </div>
+                    </div>
+
+                    <div class="music-card" data-audio="audio/LBOYL.mp3">
+                        <img src="images/music3.jpg" alt="音乐封面3">
+                        <div class="music-card-content">
+                        <div class="music-card-title">歌曲名3</div>
+                        <div class="music-card-artist">歌手名3</div>
+                        <div class="music-card-description">这是一首好听的歌曲，值得一听。</div>
+                        </div>
+                    </div>
+
+                    <!-- 第二行 -->
+                    <div class="music-card" data-audio="audio/LBOYL.mp3">
+                        <img src="images/music4.jpg" alt="音乐封面4">
+                        <div class="music-card-content">
+                        <div class="music-card-title">歌曲名4</div>
+                        <div class="music-card-artist">歌手名4</div>
+                        <div class="music-card-description">这是一首好听的歌曲，值得一听。</div>
+                        </div>
+                    </div>
+
+                    <div class="music-card" data-audio="audio/LBOYL.mp3">
+                        <img src="images/music5.jpg" alt="音乐封面5">
+                        <div class="music-card-content">
+                        <div class="music-card-title">歌曲名5</div>
+                        <div class="music-card-artist">歌手名5</div>
+                        <div class="music-card-description">这是一首好听的歌曲，值得一听。</div>
+                        </div>
+                    </div>
+
+                    <div class="music-card" data-audio="audio/LBOYL.mp3">
+                        <img src="images/music6.jpg" alt="音乐封面6">
+                        <div class="music-card-content">
+                        <div class="music-card-title">歌曲名6</div>
+                        <div class="music-card-artist">歌手名6</div>
+                        <div class="music-card-description">这是一首好听的歌曲，值得一听。</div>
+                        </div>
+                    </div>
+
+                    <!-- 第三行 -->
+                    <div class="music-card" data-audio="audio/LBOYL.mp3">
+                        <img src="images/music7.jpg" alt="音乐封面7">
+                        <div class="music-card-content">
+                        <div class="music-card-title">歌曲名7</div>
+                        <div class="music-card-artist">歌手名7</div>
+                        <div class="music-card-description">这是一首好听的歌曲，值得一听。</div>
+                        </div>
+                    </div>
+
+                    <div class="music-card" data-audio="audio/LBOYL.mp3">
+                        <img src="images/music8.jpg" alt="音乐封面8">
+                        <div class="music-card-content">
+                        <div class="music-card-title">歌曲名8</div>
+                        <div class="music-card-artist">歌手名8</div>
+                        <div class="music-card-description">这是一首好听的歌曲，值得一听。</div>
+                        </div>
+                    </div>
+
+                    <div class="music-card" data-audio="audio/LBOYL.mp3">
+                        <img src="images/music9.jpg" alt="音乐封面9">
+                        <div class="music-card-content">
+                        <div class="music-card-title">歌曲名9</div>
+                        <div class="music-card-artist">歌手名9</div>
+                        <div class="music-card-description">这是一首好听的歌曲，值得一听。</div>
+                        </div>
+                    </div>
+
+                    <!-- 第四行 -->
+                    <div class="music-card" data-audio="audio/LBOYL.mp3">
+                        <img src="images/music7.jpg" alt="音乐封面7">
+                        <div class="music-card-content">
+                        <div class="music-card-title">歌曲名10</div>
+                        <div class="music-card-artist">歌手名10</div>
+                        <div class="music-card-description">这是一首好听的歌曲，值得一听。</div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="audio-controls">
+                    <audio id="audio-player" controls style="width: 80%;">
+                        <source src="" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            <!-- </div> -->
+        </div>
+    </div>
+    </div>
+
+    <!-- 播放音频的脚本 -->
+    <script>
+      const audioPlayer = document.getElementById('audio-player');
+      let currentAudioSrc = '';
+
+      function playAudio(src) {
+        if (currentAudioSrc === src) {
+          if (audioPlayer.paused) {
+            audioPlayer.play();
+          } else {
+            audioPlayer.pause();
+          }
+        } else {
+          currentAudioSrc = src;
+          audioPlayer.src = src;
+          audioPlayer.play();
+        }
+      }
+
+      document.querySelectorAll('.music-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const audioSrc = card.getAttribute('data-audio');
+          playAudio(audioSrc);
+        });
+      });
+    </script>
+
+    <script src="bootstrap-5.1.0-dist\bootstrap-5.1.0-dist\js\bootstrap.bundle.min.js"></script>
+  </body>
+</html>

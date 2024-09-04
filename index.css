@@ -1,0 +1,97 @@
+/* index.css */
+      body {
+        margin: 0;
+        height: 100vh;
+        background-color: #d6d6d6;
+      }
+      a:hover{
+        color:rgb(13, 123, 28)
+      }
+      a{
+        text-decoration: none;
+      }
+      /* * {
+        border: 1px solid black;
+      } */
+      .flex {
+        display: flex;
+      }
+      .flex1 {
+        flex: 1;
+      }
+      .column {
+        flex-direction: column;
+      }
+      .mg8 {
+        margin: 8px;
+      }
+      .mgr8 {
+        margin-right: 8px;
+      }
+      .mgl8 {
+        margin-left: 8px;
+      }
+      .mgt8 {
+        margin-top: 8px;
+      }
+      .Navigator{
+        padding: 10px 20px;
+        border-bottom: 1px solid rgb(190, 190, 190);
+        font-size: 14px;
+        color: #666;
+      }
+      .white_background {
+        background-color: white;
+      }
+      .navbar-custom{
+        background-color: #31bb31; /* 荧光绿色 */
+      }
+      .Border-Radius{
+        border-radius: 8px;
+      }
+      .Border_solid_top{
+        border-top: 3px solid #3c9b3c;
+      }
+      .Border_solid_bottom{
+        border-bottom: 3px solid #3c9b3c;
+      }
+      .footer {
+        position: fixed; /* 固定在底部 */
+        bottom: 0; /* 距离底部0，确保它紧贴底部 */
+        width: 100%; /* 宽度为100%，覆盖整个页面宽度 */
+        height: 80px; /* 高度80px */
+        z-index: -1; /* 确保它在其他内容之上 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white; /* 白色背景 */
+        border-top: 3px solid #3c9b3c; /* 顶部边框 */
+      }
+      .footer p {
+        margin: 0; /* 无外边距 */
+        text-align: center; /* 文本居中 */
+        font-size: 14px; /* 字体大小14px */
+      }
+      .footer a {
+        text-decoration: none; /* 无下划线 */
+        color: #007bff; /* 链接颜色 */
+      }
+      /* 屏幕宽度小于600时改变的css */
+      @media(max-width: 1000px){
+        .Sider{
+            display: none;
+        }
+        .Context{
+            flex-direction: column;
+        }
+        .DataPart{
+            flex-direction: column;
+        }
+        .RPart{
+            margin-left: 8px;
+        }
+        .Data{
+            margin: 0 0 8px;
+            flex: auto;
+        }
+      }

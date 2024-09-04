@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">
+    <meta name="description" content="个人网站 Web 介绍">
+    <meta name="author" content="Funk P">
+    <link href="bootstrap-5.1.0-dist\bootstrap-5.1.0-dist\css\bootstrap.min.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet" >
+    <title>Introduce</title>
+    <style>
+    body {
+      min-height:100vh;
+      margin:0;
+      font-family: 'Droid Sans', sans-serif;
+      &:before {
+        content: '';
+        position: fixed;
+        top:0px;
+        left:54.9%;
+        bottom:0px;
+        transform:translateX(-50%);
+        width:4px;
+        background-color:#178700;
+      }
+
+      .entries {
+        width:calc(100% - 80px);
+        max-width:800px;
+        margin:auto;
+        position: relative;
+        left:-5px;
+        .entry {
+          width:calc(50% - 80px);
+          float:left; 
+          padding:20px;
+          clear:both;
+          text-align:right;
+          &:not(:first-child) {
+            margin-top:-60px;
+          }
+          .title {
+            font-size:20px;
+            margin-bottom:12px;
+            position: relative;
+            color:#178700;
+            &:before {
+              content: '';
+              position: absolute;
+              width:10px;
+              height:10px;
+              border:5px solid #ffffff;
+              background-color:#178700;
+              border-radius:100%;
+              top:50%;
+              transform:translateY(-50%);
+              right:-81px;
+              z-index:0;
+            }
+            &.big{
+              font-size:32px;
+              &:before {
+                width:24px;
+                height:24px;
+                transform:translate(8px,-50%);
+              }
+            }
+          }
+          .body {
+            color:#1c1c1c;
+            p {
+              line-height:1.4em;
+            }
+          }
+          &:nth-child(2n) {
+            text-align:left;
+            float:right;
+            .title {
+              &:before {
+                left:-129px;
+              }
+              &.big:before {
+                transform:translate(-8px,-50%);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    </style>
+  </head>
+
+    <body class="flex">
+        <!-- 侧边栏 -->
+        <div style="width: 200px; z-index: 1;" class="Sider white_background mgr8">
+        
+            <!-- 头像栏 -->
+            <div style="padding: 10px; align-items: center; justify-content: center;
+            border-bottom: 1px solid #999;" class="flex">
+                <img 
+                    src="images/1.png" 
+                    weight="40px"
+                    height="40px"
+                    style="border-radius: 20%"
+                    alt="图片若无法打开则显示这行文字"
+                />
+                <div style="margin-left: 10px;">Administrator</div>
+            </div>
+
+            <!-- 导航栏 -->
+            <div class="list-group" style="margin-top: 0px;">
+                <a href="index.html" class="list-group-item list-group-item-action" style=" font-weight: bold; text-align: center;" aria-current="page" aria-current="true">主页</a>
+                <a href="introduce.html" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-success">网站简介</a>
+                <a href="#" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-action">传送门</a>
+                <a href="music.html" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-action">音乐分享</a>
+                <a href="#" style="font-weight: bold; text-align: center;" aria-current="page" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">正在开发</a>
+            </div>
+        </div>
+
+
+        <!-- 中间的主要内容 -->
+        <div class="flex1 flex column">
+
+            <!-- 头部栏 -->
+            <div style="border-radius: 10px; height: 80px; z-index: 1; display: flex; justify-content: center; align-items: center;" class="white_background ">
+                <h1 style="margin-left: -60px; text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">The Main Introduction</h1>
+            </div>
+
+            <div class="entries">
+              <div class="entry">
+                <div class="title big">2024年8月</div>
+
+                <div class="title">8月24日</div>
+                <div class="body">
+                  <p>决定制作自己的第一个网站</p>
+                </div>      
+
+                <div class="title">8月29日</div>
+                <div class="body">
+                  <p>完成网站“音乐分享”页面</p>
+                </div>      
+
+                <div class="title">8月29日</div>
+                <div class="body">
+                  <p>完成网站“音乐分享”页面</p>
+                </div>     
+            </div>
+
+
+            <div class="entry">
+
+                <div class="title big">2024年9月</div>
+
+                <div class="title">9月4日</div>
+                <div class="body">
+                  <p>完成网站“网站介绍”页面</p>
+                </div>   
+              </div>
+
+            </div>
+            <!-- <div class="entries">
+              <div class="entry">
+                <div class="title">2011</div>
+                <div class="body">
+                  <p>Neque sunt voluptatibus repellat pariatur ut enim. Eveniet rerum suscipit eveniet amet dignissimos. Doloremque et distinctio quod molestiae ut.</p>
+                </div>
+              </div>
+              <div class="entry">
+                <div class="title">2012</div>
+                <div class="body">
+                  <p>Quo nobis cumque dolor iure voluptatem voluptatem alias soluta.</p>
+                </div>
+              </div>
+              <div class="entry">
+                <div class="title big">2013</div>
+                <div class="body">
+                  <p>Rerum sit libero possimus amet excepturi. Exercitationem enim dolores sunt praesentium dolorum praesentium.</p>
+                </div>
+              </div>
+              <div class="entry">
+                <div class="title">2014</div>
+                <div class="body">
+                  <p>Voluptatibus veniam ea reprehenderit atque. Reiciendis non laborum adipisci ipsa pariatur omnis. Sed ipsam repudiandae velit. Omnis libero nostrum aperiam nemo dolor ea eos eius. Esse a non itaque quidem.</p>
+                </div>
+              </div>
+              <div class="entry">
+                <div class="title">2015</div>
+                <div class="body">
+                  <p>VAdipisci totam omnis cum et suscipit excepturi et excepturi. Inventore sequi sit ut aliquid. Modi aut dolores dignissimos.</p>
+                  <p>Delectus facere officia consequuntur molestias deserunt illo. Placeat laudantium beatae natus excepturi ab nihil voluptates.</p>
+                </div>
+              </div>
+              <div class="entry">
+                <div class="title big">2016</div>
+                <div class="body">
+                  <p>Impedit dolorem commodi explicabo fugit aut alias voluptatem. Magnam earum rerum quae dicta quibusdam aliquam ut.</p>
+                </div>
+              </div>
+              <div class="entry">
+                <div class="title">2017</div>
+                <div class="body">
+                  <p>Qui facere eos aut suscipit doloremque quos...</p>
+                </div>
+              </div>
+            </div> -->
+
+        </div>
+
+        <!-- 底部栏 -->
+        <div  class=" footer" style="z-index: 2;">
+          <p >
+            © 2024 欢迎来到这个网站 | 当前版本1.0.0 | <a href="#" style="text-decoration: none; color: #007bff;">隐私政策</a> | <a href="#" style="text-decoration: none; color: #007bff;">联系我们</a>
+          </p>
+        </div>
+
+        <script src="bootstrap-5.1.0-dist\bootstrap-5.1.0-dist\js\bootstrap.bundle.min.js"></script>        
+    </body>
+</html>
